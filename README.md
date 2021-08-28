@@ -1,4 +1,4 @@
-# FACEIT match stats BOT
+# FACEIT last match stats BOT
 
 This BOT, written in Python, sends a discord message to certain channel with info about your last CS:GO match on FACEIT.
 
