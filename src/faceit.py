@@ -21,7 +21,7 @@ player_avatar = data['avatar']
 player_nickname = data['nickname']
 print(player_id)
 
-#Getting last match of player'ODQ3MTEzNTA5MTI0MzA5MDEz.YK5V7w.R3m1sbVQMpH8lgVZp7l3Iv4CR58'
+#Getting last match of player
 csgo_lastMatches_url = "https://open.faceit.com/data/v4/players/" + player_id + "/history?game=csgo&offset=0&limit=0"
 response_lastMatches = requests.request("GET", csgo_lastMatches_url, headers=headers)
 lastMatches = response_lastMatches.json()
