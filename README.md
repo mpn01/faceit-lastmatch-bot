@@ -10,3 +10,5 @@ To show your last match just simply type `!lastmatch %nicnkame%`. BOT will send:
 * Your K/D Ratio
 * Headshot %
 
+![Teaser](https://raw.githubusercontent.com/mpn01/faceit-lastmatch-bot/master/README/videos/teaser.gif)
+
