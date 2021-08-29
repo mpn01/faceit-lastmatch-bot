@@ -1,7 +1,7 @@
 import discord
 import os
 import requests
-#import faceit
+import faceit
 from random import randint
 from dotenv import load_dotenv
 from discord.ext import commands
@@ -26,33 +26,15 @@ async def on_ready():
 async def lastmatch(ctx, nickname : str):
 
   #Getting player data
-  url = "https://open.faceit.com/data/v4/players?nickname="+nickname
-  response = requests.request("GET", url, headers=headers)
-  data = response.json()
-  player_id = str(data['player_id'])
-  player_avatar = data['avatar']
-  player_nickname = data['nickname']
-
-  #Getting last match of player
-  csgo_lastMatches_url = "https://open.faceit.com/data/v4/players/" + player_id + "/history?game=csgo&offset=0&limit=0"
-  response_lastMatches = requests.request("GET", csgo_lastMatches_url, headers=headers)
-  lastMatches = response_lastMatches.json()
-
-  #Getting player stats
-  csgo_stats_url = "https://open.faceit.com/data/v4/players/" + player_id + "/stats/csgo"
-  response_stats = requests.request("GET", csgo_stats_url, headers=headers)
-  stats = response_stats.json()
-
-  #Getting player ELO points and current level
-  player_csgo_elo = data['games']['csgo']['faceit_elo']
-  player_csgo_level = data['games']['csgo']['skill_level']
-
-  #Getting player last match
-  csgo_lastMatch_id = lastMatches['items'][0]['match_id']
-  csgo_lastMatch_stats_url = "https://open.faceit.com/data/v4/matches/" + str(csgo_lastMatch_id) + "/stats"
-  response_lastMatchesStats = requests.request("GET", csgo_lastMatch_stats_url, headers=headers)
-  lastMatchesStats = response_lastMatchesStats.json()
-
+  data = faceit.getData(nickname)
+  player_id = data[0]
+  player_avatar = data[1]
+  player_nickname = data[2]
+  lastMatches = data[3]
+  player_csgo_elo = data[4]
+  player_csgo_level = data[5]
+  csgo_lastMatch_id = data[6]
+  lastMatchesStats = data[7]
 
   #Checking if player won or lost the match
   for x in range(0, 5):
@@ -67,6 +49,9 @@ async def lastmatch(ctx, nickname : str):
   else:
     csgo_lastMatch_player_score = False
 
+
+  mapPlayed = lastMatchesStats['rounds'][0]['round_stats']['Map']
+  score = lastMatchesStats['rounds'][0]['round_stats']['Score']
   #Finding certain player between all players
   for x in range(0, 2):
     for y in range (0, 5):
@@ -74,8 +59,6 @@ async def lastmatch(ctx, nickname : str):
         kills = lastMatchesStats['rounds'][0]['teams'][x]['players'][y]['player_stats']['Kills']
         kdratio = lastMatchesStats['rounds'][0]['teams'][x]['players'][y]['player_stats']['K/D Ratio']
         hspr = lastMatchesStats['rounds'][0]['teams'][x]['players'][y]['player_stats']['Headshots %']
-        mapPlayed = lastMatchesStats['rounds'][0]['round_stats']['Map']
-        score = lastMatchesStats['rounds'][0]['round_stats']['Score']
 
   #channel = bot.get_channel(847137189133025321)
   if csgo_lastMatch_player_score == True:
@@ -114,5 +97,3 @@ async def lastmatch(ctx, nickname : str):
     await ctx.send(embed=embed)
 
 bot.run(DISCORD_KEY)
-
-#client.run(DISCORD_KEY)
