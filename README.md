@@ -1,4 +1,4 @@
-# FACEIT match stats BOT
+# FACEIT last match stats BOT
 
 This BOT, written in Python, sends a discord message to certain channel with info about your last CS:GO match on FACEIT.
 
@@ -10,8 +10,7 @@ This BOT, written in Python, sends a discord message to certain channel with inf
 At this moment to use it, you need to have an account on [FACEIT for Developers](https://developers.faceit.com) and your own Discord server.
 
 Create your Discord BOT on [Discord for Developers site](https://discord.com/developers) and add it to your server.
-Then, download files from `/src` folder in this repo.
-In this folder create `.env` file in which paste this:
+Then, download files from `/src` folder from this repo, create `.env` file and paste this:
 
 ```env
 FACEIT='%faceit_token%'
