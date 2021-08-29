@@ -10,8 +10,6 @@ load_dotenv()
 
 bot = commands.Bot(command_prefix="!")
 DISCORD_KEY = os.getenv('DISCORD')
-
-
 FACEIT_KEY = os.getenv('FACEIT')
 headers = {
   'Authorization': 'Bearer ' + FACEIT_KEY,
@@ -28,7 +26,10 @@ async def lastmatch(ctx, nickname : str):
   #Getting player data
   data = faceit.getData(nickname)
   player_id = data[0]
-  player_avatar = data[1]
+  if data[1] == "":
+    player_avatar = "https://assets.faceit-cdn.net/avatars/2120e729-49a2-46a7-8677-8693c5feab45_1613991726779.jpg"
+  else:
+    player_avatar = data[1]
   player_nickname = data[2]
   lastMatches = data[3]
   player_csgo_elo = data[4]
