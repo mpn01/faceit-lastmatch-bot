@@ -14,7 +14,7 @@ Click [this link](https://discord.com/api/oauth2/authorize?client_id=84711350912
 **If BOT isn't working it's probably server related issue**
 
 ### How it works?
-To show your last match just simply type `!lastmatch %nicnkame%`. BOT will send:
+To show your last match just simply type `!lastmatch %nickname%`. BOT will send:
 * Score of the match
 * Which level you have
 * How many ELO points you have
