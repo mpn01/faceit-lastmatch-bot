@@ -7,17 +7,11 @@ This BOT, written in Python, sends a discord message to certain channel with inf
 
 ### How to install it?
 
-At this moment to use it, you need to have an account on [FACEIT for Developers](https://developers.faceit.com) and your own Discord server.
+To use it, you'll need to have your own Discord server or be and admin on one.
 
-Create your Discord BOT on [Discord for Developers site](https://discord.com/developers) and add it to your server.
-Then, download files from `/src` folder from this repo, create `.env` file and paste this:
+Click [this link](https://discord.com/api/oauth2/authorize?client_id=847113509124309013&permissions=18432&scope=bot) to add this BOT to your server.
 
-```env
-FACEIT='%faceit_token%'
-DISCORD='%discord_token%'
-```
-
-Then run in terminal `python3 main.py`, this will turn on the bot.
+**If BOT isn't working it's probably server related issue**
 
 ### How it works?
 To show your last match just simply type `!lastmatch %nicnkame%`. BOT will send:
@@ -27,3 +21,8 @@ To show your last match just simply type `!lastmatch %nicnkame%`. BOT will send:
 * How many kills you did
 * Your K/D Ratio
 * Headshot %
+
+### Current problems
+
+* FACEIT API won't let you see your last match if you left it. BOT will only send error message.
+* FACEIT API can't read old matches (1/2 months old).
