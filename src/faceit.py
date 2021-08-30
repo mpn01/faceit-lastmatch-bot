@@ -20,7 +20,6 @@ def getData(nickname : str):
   player_id = data['player_id']
   player_avatar = data['avatar']
   player_nickname = data['nickname']
-  print(player_id)
 
   #Getting last match of player
   csgo_lastMatches_url = "https://open.faceit.com/data/v4/players/" + player_id + "/history?game=csgo&offset=0&limit=0"
